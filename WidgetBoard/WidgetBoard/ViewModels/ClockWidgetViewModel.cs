@@ -5,10 +5,17 @@
 /// </summary>
 public class ClockWidgetViewModel : BaseViewModel, IWidgetViewModel
 {
+    private DateOnly _date;
+    public DateOnly Date
+    {
+        get => _date; 
+        set => SetProperty(ref _date, value);
+    }
+
     public int Position { get; set; }
 
-    private DateTime _time;
-    public DateTime Time
+    private TimeOnly _time;
+    public TimeOnly Time
     {
         get => _time;
         set => SetProperty(ref _time, value);
@@ -21,12 +28,13 @@ public class ClockWidgetViewModel : BaseViewModel, IWidgetViewModel
     }
 
     /// <summary>
-    /// Sets the Time property and repeat every second so that the widget looks like a clock counting.
+    /// Sets the Date and Time properties for the clock widget.
     /// </summary>
     /// <param name="dateTime"></param>
     public void SetTime(DateTime dateTime)
     {
-        Time = dateTime;
+        Date = DateOnly.FromDateTime(dateTime);
+        Time = TimeOnly.FromDateTime(dateTime);
         Scheduler.ScheduleAction(TimeSpan.FromSeconds(1), () => SetTime(DateTime.Now));
     }
 }
