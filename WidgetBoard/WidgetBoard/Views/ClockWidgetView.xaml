@@ -4,10 +4,20 @@
        xmlns:viewmodels="clr-namespace:WidgetBoard.ViewModels"
        x:Class="WidgetBoard.Views.ClockWidgetView"
        x:DataType="viewmodels:ClockWidgetViewModel"
-       FontSize="60"
+       FontSize="80"
        HorizontalOptions="Center"
-       VerticalOptions="Center"
-       Text="{Binding Time}">
+       VerticalOptions="Center">
+
+    <Label.BindingContext>
+        <viewmodels:ClockWidgetViewModel />
+    </Label.BindingContext>
+
+    <Label.Text>
+        <MultiBinding StringFormat="{}{0} {1}">
+            <Binding Path="Date" />
+            <Binding Path="Time" />
+        </MultiBinding>
+    </Label.Text>
 
 </Label>
     
