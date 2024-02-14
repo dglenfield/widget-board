@@ -1,3 +1,5 @@
+using WidgetBoard.ViewModels;
+
 namespace WidgetBoard.Pages;
 
 /// <summary>
@@ -5,8 +7,10 @@ namespace WidgetBoard.Pages;
 /// </summary>
 public partial class FixedBoardPage : ContentPage
 {
-	public FixedBoardPage()
+	public FixedBoardPage(FixedBoardPageViewModel fixedBoardPageViewModel)
 	{
 		InitializeComponent();
-	}
+
+        BindingContext = fixedBoardPageViewModel;
+    }
 }
