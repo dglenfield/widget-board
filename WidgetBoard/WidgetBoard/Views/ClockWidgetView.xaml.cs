@@ -9,11 +9,11 @@ public partial class ClockWidgetView : Label, IWidgetView
 {
 	public IWidgetViewModel WidgetViewModel { get; set; }
 
-	public ClockWidgetView()
+	public ClockWidgetView(ClockWidgetViewModel clockWidgetViewModel)
 	{
 		InitializeComponent();
 
-		WidgetViewModel = new ClockWidgetViewModel();
-		BindingContext = WidgetViewModel;
+		WidgetViewModel = clockWidgetViewModel;
+		BindingContext = clockWidgetViewModel;
 	}
 }

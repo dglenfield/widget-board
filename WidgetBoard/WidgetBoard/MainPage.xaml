@@ -4,6 +4,6 @@
              xmlns:views="clr-namespace:WidgetBoard.Views"
              x:Class="WidgetBoard.MainPage">
 
-    <views:ClockWidgetView />
+    <!--<views:ClockWidgetView />-->
 
 </ContentPage>
