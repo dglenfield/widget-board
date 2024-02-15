@@ -33,6 +33,8 @@ public static class MauiProgram
         builder.Services.AddTransient<ClockWidgetView>();
         builder.Services.AddTransient<ClockWidgetViewModel>();
 
+        builder.Services.AddSingleton(SemanticScreenReader.Default);
+
 #if DEBUG
         builder.Logging.AddDebug();
 #endif

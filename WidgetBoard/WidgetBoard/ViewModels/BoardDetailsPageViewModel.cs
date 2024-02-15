@@ -41,11 +41,16 @@ public class BoardDetailsPageViewModel : BaseViewModel
 
     public Command SaveCommand { get; }
 
-    public BoardDetailsPageViewModel()
+    private readonly ISemanticScreenReader _semanticScreenReader;
+
+    public BoardDetailsPageViewModel(ISemanticScreenReader semanticScreenReader)
     {
         SaveCommand = new Command(
             () => Save(),
             () => !string.IsNullOrWhiteSpace(BoardName));
+        _semanticScreenReader = semanticScreenReader;
+
+        _semanticScreenReader = semanticScreenReader;
     }
 
     private async void Save()
@@ -61,6 +66,8 @@ public class BoardDetailsPageViewModel : BaseViewModel
                 NumberOfRows = NumberOfRows
             }
         };
+
+        _semanticScreenReader.Announce($"A new board with the name {BoardName} was created successfully.");
 
         await Shell.Current.GoToAsync(
             "fixedboard",
