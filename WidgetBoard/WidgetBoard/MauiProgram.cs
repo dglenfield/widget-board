@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Logging;
+using WidgetBoard.Data;
 using WidgetBoard.Pages;
 using WidgetBoard.ViewModels;
 using WidgetBoard.Views;
@@ -33,7 +34,15 @@ public static class MauiProgram
         builder.Services.AddTransient<ClockWidgetView>();
         builder.Services.AddTransient<ClockWidgetViewModel>();
 
+        builder.Services.AddTransient<IBoardRepository, SqliteBoardRepository>();
+        //builder.Services.AddTransient<IBoardRepository, LiteDBBoardRepository>();
+
         builder.Services.AddSingleton(SemanticScreenReader.Default);
+
+        builder.Services.AddSingleton(FileSystem.Current);
+
+        builder.Services.AddSingleton(Preferences.Default);
+        builder.Services.AddSingleton(SecureStorage.Default);
 
 #if DEBUG
         builder.Logging.AddDebug();

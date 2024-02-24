@@ -36,7 +36,7 @@
             </Border.Triggers>
             <VerticalStackLayout>
                 <Label Text="Add widget" FontSize="20" />
-                <Label Text="Widget" />
+                <Label Text="Widget" x:Name="SelectTheWidgetLabel" />
                 <Picker ItemsSource="{Binding AvailableWidgets}"
                         SelectedItem="{Binding SelectedWidget}"
                         SemanticProperties.Description="{Binding Text, Source={x:Reference SelectTheWidgetLabel}}"
