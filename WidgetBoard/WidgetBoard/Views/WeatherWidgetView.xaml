@@ -10,6 +10,7 @@
         <converters:IsEqualToStateConverter x:Key="IsLoadingConverter" State="Loading" />
         <converters:IsEqualToStateConverter x:Key="HasLoadedConverter" State="Loaded" />
         <converters:IsEqualToStateConverter x:Key="HasErrorConverter" State="Error" />
+        <converters:IsEqualToStateConverter x:Key="HasPermissionErrorConverter" State="PermissionError" />
     </ContentView.Resources>
     
     <VerticalStackLayout>
@@ -36,6 +37,12 @@
         <!-- Error -->
         <VerticalStackLayout IsVisible="{Binding State, Converter={StaticResource HasErrorConverter}}">
             <Label Text="Unable to load weather data" />
+            <Button Text="Retry" Command="{Binding LoadWeatherCommand}" />
+        </VerticalStackLayout>
+        
+        <!-- PermissionError -->
+        <VerticalStackLayout IsVisible="{Binding State, Converter={StaticResource HasPermissionErrorConverter}}">
+            <Label Text="Unable to retrieve location data" />
             <Button Text="Retry" Command="{Binding LoadWeatherCommand}" />
         </VerticalStackLayout>
 
