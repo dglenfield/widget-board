@@ -4,7 +4,7 @@
        xmlns:viewmodels="clr-namespace:WidgetBoard.ViewModels"
        x:Class="WidgetBoard.Views.ClockWidgetView"
        x:DataType="viewmodels:ClockWidgetViewModel"
-       FontSize="80"
+       FontSize="{OnPlatform Default=60, Android=25, iOS=30}"
        HorizontalOptions="Center"
        VerticalOptions="Center">
 

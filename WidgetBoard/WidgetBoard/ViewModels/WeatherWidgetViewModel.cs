@@ -1,5 +1,6 @@
 ﻿using System.Windows.Input;
 using WidgetBoard.Communications;
+using WidgetBoard.Services;
 
 namespace WidgetBoard.ViewModels;
 
@@ -40,10 +41,12 @@ public class WeatherWidgetViewModel : BaseViewModel, IWidgetViewModel
     public ICommand LoadWeatherCommand { get; }
 
     private readonly IWeatherForecastService _weatherForecastService;
+    private readonly ILocationService _locationService;
 
-    public WeatherWidgetViewModel(IWeatherForecastService weatherForecastService)
+    public WeatherWidgetViewModel(IWeatherForecastService weatherForecastService, ILocationService locationService)
     {
         _weatherForecastService = weatherForecastService;
+        _locationService = locationService;
 
         LoadWeatherCommand = new Command(async () => await LoadWeatherForecast());
 
@@ -52,11 +55,19 @@ public class WeatherWidgetViewModel : BaseViewModel, IWidgetViewModel
 
     private async Task LoadWeatherForecast()
     {
+        State = State.Loading;
+
         try
         {
-            State = State.Loading;
+            var location = await _locationService.GetLocationAsync();
+            if (location is null)
+            {
+                State = State.PermissionError;
+                return;
+            }
 
-            var forecast = await _weatherForecastService.GetForecast(20.798363, -156.331924);
+            //var forecast = await _weatherForecastService.GetForecast(20.798363, -156.331924);
+            var forecast = await _weatherForecastService.GetForecast(location.Latitude, location.Longitude);
 
             Temperature = forecast.Main.Temperature;
             Weather = forecast.Weather.First().Main;
@@ -78,5 +89,6 @@ public enum State
     None = 0,
     Loading = 1,
     Loaded = 2,
-    Error = 3
+    Error = 3,
+    PermissionError = 4
 }
