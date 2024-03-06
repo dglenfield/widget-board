@@ -7,3 +7,5 @@
 /WidgetBoard/WidgetBoard/obj
 /WidgetBoard/WidgetBoard/WidgetBoard.csproj.user
 /.vs
+/WidgetBoard/WidgetBoard.Tests/obj
+/WidgetBoard/WidgetBoard.Tests/bin/Debug/net7.0
