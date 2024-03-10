@@ -56,6 +56,10 @@ public static class MauiProgram
         builder.Services.AddSingleton(Geolocation.Default);
         builder.Services.AddSingleton<ILocationService, LocationService>();
 
+        WidgetFactory.RegisterWidget<SketchWidgetView, SketchWidgetViewModel>(SketchWidgetViewModel.DisplayName);
+        builder.Services.AddTransient<SketchWidgetView>();
+        builder.Services.AddTransient<SketchWidgetViewModel>();
+
 #if DEBUG
         builder.Logging.AddDebug();
 #endif
