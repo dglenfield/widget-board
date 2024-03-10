@@ -68,6 +68,9 @@
 	  <MauiXaml Update="Views\ClockWidgetView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\SketchWidgetView.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\WeatherWidgetView.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
